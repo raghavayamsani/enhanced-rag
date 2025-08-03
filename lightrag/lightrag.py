@@ -233,6 +233,23 @@ class LightRAG:
     llm_model_kwargs: dict[str, Any] = field(default_factory=dict)
     """Additional keyword arguments passed to the LLM model function."""
 
+    enable_rerank: bool = field(
+        default=bool(os.getenv("ENABLE_RERANK", "False").lower() == "true")
+    )
+
+    rerank_model_max_async: int = field(default=int(os.getenv("RERANK_MAX_ASYNC", 4)))
+
+
+    rerank_model_kwargs: dict[str, Any] = field(default_factory=dict)
+
+    rerank_model_func: Callable[..., object] | None = field(default=None)
+
+    rerank_top_k: int = field(default=int(os.getenv("RERANK_TOP_K", 10)))
+
+    rerank_model_name: str = field(
+        default=os.getenv("RERANK_MODEL", "BAAI/bge-reranker-v2-m3")
+    )
+
     # Storage
     # ---
 
@@ -447,6 +464,22 @@ class LightRAG:
                 **self.llm_model_kwargs,
             )
         )
+        ## Adding a Reranking function
+
+        if self.enable_rerank and self.rerank_model_func:
+            self.rerank_model_func = priority_limit_async_func_call(
+                self.rerank_model_max_async
+            )(
+                partial(
+                    self.rerank_model_func,
+                    **self.rerank_model_kwargs
+                )
+            )
+            logger.info("Rerank model initialized for improved retrieval quality")
+        elif self.enable_rerank and not self.rerank_model_func:
+            logger.warning(
+                "Rerank is enabled but no rerank_model_func provided. Reranking will be skipped."
+            )
 
         self._storages_status = StoragesStatus.CREATED
 
