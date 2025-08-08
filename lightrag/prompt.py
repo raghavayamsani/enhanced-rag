@@ -228,6 +228,7 @@ When handling relationships with timestamps:
 - If you don't know the answer, just say so.
 - Do not make anything up. Do not include information not provided by the Knowledge Base.
 - Addtional user prompt: {user_prompt}
+- Make sure you give the more summarized response in 5-6 lines
 
 Response:"""
 

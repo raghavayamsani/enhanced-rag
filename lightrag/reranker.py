@@ -202,6 +202,32 @@ async def generic_rerank_api(
         return documents
 
 
+# Convenience function for custom API endpoints
+async def custom_rerank(
+    query: str,
+    documents: List[Dict[str, Any]],
+    model: str,
+    base_url: str,
+    api_key: str,
+    top_n: Optional[int] = None,
+    **kwargs,
+) -> List[Dict[str, Any]]:
+    """
+    Rerank documents using a custom API endpoint.
+    This is useful for self-hosted or custom rerank services.
+    """
+    return await generic_rerank_api(
+        query=query,
+        documents=documents,
+        model=model,
+        base_url=base_url,
+        api_key=api_key,
+        top_n=top_n,
+        **kwargs,
+    )
+
+
+
 async def cohere_rerank(
     query: str,
     documents: List[Dict[str, Any]],

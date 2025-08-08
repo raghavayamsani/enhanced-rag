@@ -140,30 +140,30 @@ async def main():
         print("=====================")
         print(
             await rag.aquery(
-                "What are the top themes in this story?", param=QueryParam(mode="naive")
+                "What are the steps involved in extracting and handling honey, and why is it important to strain the honey after extraction?", param=QueryParam(mode="naive")
             )
         )
 
-        # Perform local search
-        print("\n=====================")
-        print("Query mode: local")
-        print("=====================")
-        print(
-            await rag.aquery(
-                "What are the top themes in this story?", param=QueryParam(mode="local")
-            )
-        )
-
-        # Perform global search
-        print("\n=====================")
-        print("Query mode: global")
-        print("=====================")
-        print(
-            await rag.aquery(
-                "What are the top themes in this story?",
-                param=QueryParam(mode="global"),
-            )
-        )
+        # # Perform local search
+        # print("\n=====================")
+        # print("Query mode: local")
+        # print("=====================")
+        # print(
+        #     await rag.aquery(
+        #         "What are the steps involved in extracting and handling honey, and why is it important to strain the honey after extraction?", param=QueryParam(mode="local")
+        #     )
+        # )
+        #
+        # # Perform global search
+        # print("\n=====================")
+        # print("Query mode: global")
+        # print("=====================")
+        # print(
+        #     await rag.aquery(
+        #         "What are the steps involved in extracting and handling honey, and why is it important to strain the honey after extraction?",
+        #         param=QueryParam(mode="global"),
+        #     )
+        # )
 
         # Perform hybrid search
         print("\n=====================")
@@ -171,7 +171,7 @@ async def main():
         print("=====================")
         print(
             await rag.aquery(
-                "What are the top themes in this story?",
+                "What are the steps involved in extracting and handling honey, and why is it important to strain the honey after extraction?",
                 param=QueryParam(mode="hybrid"),
             )
         )

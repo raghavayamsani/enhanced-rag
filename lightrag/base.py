@@ -97,7 +97,9 @@ class QueryParam:
     """User-provided prompt for the query.
     If proivded, this will be use instead of the default vaulue from prompt template.
     """
+    enable_rerank: bool = os.getenv("ENABLE_RERANK", "true").lower() == "true"
 
+    chunk_top_k: int = int(os.getenv("CHUNK_TOP_K", 10))
 
 @dataclass
 class StorageNameSpace(ABC):

@@ -1387,7 +1387,7 @@ async def kg_query(
         query_param,
         chunks_vdb,
     )
-
+    logger.info(f"Context in KG Query: {context}")
     if query_param.only_need_context:
         return context
     if context is None:
@@ -2394,6 +2394,8 @@ async def naive_query(
 ```
 
 """
+
+    logger.info(f"Context in naive query: {text_units_str}")
     # Process conversation history
     history_context = ""
     if query_param.conversation_history:
