@@ -46,7 +46,7 @@ httpx==0.28.1
 idna==3.10
 jiter==0.10.0
 jwt==1.4.0
-multidict==6.6.3
+multidict==6.6.4
 numpy==2.3.2
 openai==1.98.0
 packaging==25.0
