@@ -35,7 +35,7 @@ cffi==1.17.1
 charset-normalizer==3.4.2
 click==8.2.1
 configparser==7.2.0
-cryptography==45.0.5
+cryptography==45.0.7
 distro==1.9.0
 fastapi==0.116.1
 frozenlist==1.7.0
